@@ -268,50 +268,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ======================================================================
-       7. DETECTAR USUÁRIO LOGADO
-       ====================================================================== */
+   7. DETECTAR USUÁRIO LOGADO
+   ====================================================================== */
 
-    onAuthStateChanged(auth, (usuario) => {
+onAuthStateChanged(auth, (usuario) => {
 
-        if (usuario) {
+    if (usuario) {
 
-            nomeUsuario.textContent =
-                usuario.displayName || 'Usuário';
+        console.log("Usuário logado:", usuario);
 
-
-            if (usuario.photoURL) {
-
-                fotoUsuario.src = usuario.photoURL;
-
-                fotoUsuario.alt =
-                    `Foto de ${usuario.displayName || 'usuário'}`;
-
-                fotoUsuario.hidden = false;
-
-            } else {
-
-                fotoUsuario.src = '';
-
-                fotoUsuario.alt = '';
-
-                fotoUsuario.hidden = true;
-
-            }
+        nomeUsuario.textContent =
+            usuario.displayName || "Usuário";
 
 
-            usuarioLogado.hidden = false;
+        // FOTO DO GOOGLE
+        if (usuario.photoURL) {
 
-            btnLoginGoogle.hidden = true;
+            fotoUsuario.src = usuario.photoURL;
+
+            fotoUsuario.alt =
+                `Foto de ${usuario.displayName || "usuário"}`;
+
+            fotoUsuario.style.display = "block";
 
         } else {
 
-            usuarioLogado.hidden = true;
-
-            btnLoginGoogle.hidden = false;
+            fotoUsuario.style.display = "none";
 
         }
 
-    });
+
+        // Mostra informações do usuário
+        usuarioLogado.hidden = false;
+
+        // Esconde botão Entrar com Google
+        btnLoginGoogle.hidden = true;
+
+
+    } else {
+
+        // Esconde informações do usuário
+        usuarioLogado.hidden = true;
+
+        // Mostra botão de login
+        btnLoginGoogle.hidden = false;
+
+    }
+
+});
 
 
     /* ======================================================================
