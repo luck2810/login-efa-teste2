@@ -1,511 +1,1027 @@
 /* ==========================================================================
-   1. VARIÁVEIS DE TEMA E CONFIGURAÇÕES GERAIS
+   1. VARIÁVEIS DE TEMA
    ========================================================================== */
+
 :root {
     --bg-principal: #f8f9fa;
     --bg-card: #ffffff;
+
     --texto-principal: #212529;
     --texto-secundario: #6c757d;
+
     --cor-primaria: #0d6efd;
     --cor-primaria-hover: #0b5ed7;
+
     --cor-tag-bg: #e7f1ff;
     --cor-tag-texto: #0a58ca;
+
     --borda: #dee2e6;
-    --fonte-padrao: system-ui, -apple-system, sans-serif;
+
+    --fonte-padrao: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
     --tamanho-base: 16px;
 }
 
-/* Tema Escuro (Ativado via JS) */
+
+/* ==========================================================================
+   2. TEMA ESCURO
+   ========================================================================== */
+
 [data-theme="dark"] {
     --bg-principal: #121212;
     --bg-card: #1e1e1e;
+
     --texto-principal: #f8f9fa;
-    --texto-secundario: #a0a0a0;
-    --cor-primaria: #375a7f;
-    --cor-primaria-hover: #4b75a4;
-    --cor-tag-bg: #2c3e50;
-    --cor-tag-texto: #3498db;
-    --borda: #333333;
+    --texto-secundario: #b0b0b0;
+
+    --cor-primaria: #4b8fe8;
+    --cor-primaria-hover: #6aa3f0;
+
+    --cor-tag-bg: #26384a;
+    --cor-tag-texto: #70b7ff;
+
+    --borda: #383838;
 }
 
-/* Fonte para Dislexia */
+
+/* ==========================================================================
+   3. FONTE PARA DISLEXIA
+   ========================================================================== */
+
 .fonte-dislexia {
-    --fonte-padrao: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+    --fonte-padrao: "OpenDyslexic", "Comic Sans MS", sans-serif;
 }
 
-/* Configurações Globais */
-* {
+
+/* ==========================================================================
+   4. CONFIGURAÇÕES GLOBAIS
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
+
+
+html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 
 body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    margin: 0;
+    padding: 0;
+
+    overflow-x: hidden;
+
     font-family: var(--fonte-padrao);
     font-size: var(--tamanho-base);
+
     background-color: var(--bg-principal);
     color: var(--texto-principal);
+
     line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s;
+
+    transition:
+        background-color 0.3s,
+        color 0.3s;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+
+/* Imagens nunca ultrapassam a tela */
+
+img {
+    max-width: 100%;
 }
+
+
+/* Elementos escondidos */
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* ==========================================================================
+   5. CONTAINER PRINCIPAL
+   ========================================================================== */
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 
 .container-flex {
     display: flex;
+
     justify-content: space-between;
     align-items: center;
+
     flex-wrap: wrap;
+
     gap: 10px;
+
+    width: 100%;
 }
 
-/* Esconder elementos visualmente mantendo para leitores de tela */
-.sr-only, .sr-only-focusable:not(:focus) {
+
+/* ==========================================================================
+   6. ACESSIBILIDADE PARA LEITORES DE TELA
+   ========================================================================== */
+
+.sr-only,
+.sr-only-focusable:not(:focus) {
     position: absolute;
+
     width: 1px;
     height: 1px;
+
     padding: 0;
     margin: -1px;
+
     overflow: hidden;
+
     clip: rect(0, 0, 0, 0);
+
     white-space: nowrap;
+
     border: 0;
 }
 
+
 .sr-only-focusable:focus {
     position: fixed;
+
     top: 10px;
     left: 10px;
+
     background: var(--cor-primaria);
     color: white;
+
     padding: 10px 20px;
+
     z-index: 9999;
+
     text-decoration: none;
-    border-radius: 4px;
+
+    border-radius: 6px;
 }
 
+
 /* ==========================================================================
-   2. BARRA DE ACESSIBILIDADE E CABEÇALHO
+   7. BARRA DE ACESSIBILIDADE
    ========================================================================== */
+
 .barra-acessibilidade {
+    width: 100%;
+    max-width: 100%;
+
     background-color: #212529;
+
     padding: 10px 0;
+
     border-bottom: 1px solid #343a40;
+
+    overflow-x: hidden;
 }
+
 
 .grupo-ajuste {
     display: flex;
+
+    align-items: center;
+
     gap: 10px;
+
+    flex-wrap: wrap;
 }
+
 
 .barra-acessibilidade button {
     background-color: #343a40;
-    color: #fff;
+    color: #ffffff;
+
     border: 1px solid #495057;
-    padding: 6px 12px;
+
+    padding: 8px 12px;
+
     cursor: pointer;
-    border-radius: 4px;
+
+    border-radius: 6px;
+
     font-size: 0.9rem;
-    transition: background-color 0.2s;
+
+    transition:
+        background-color 0.2s,
+        transform 0.2s;
+
+    max-width: 100%;
 }
+
 
 .barra-acessibilidade button:hover,
 .barra-acessibilidade button[aria-pressed="true"] {
     background-color: var(--cor-primaria);
+
     border-color: var(--cor-primaria);
 }
 
+
+/* ==========================================================================
+   8. CABEÇALHO
+   ========================================================================== */
+
 .cabecalho-principal {
+    width: 100%;
+    max-width: 100%;
+
     background-color: var(--bg-card);
+
     border-bottom: 1px solid var(--borda);
+
     padding: 20px 0;
 }
 
+
 .cabecalho-principal .container {
     display: flex;
+
     justify-content: space-between;
     align-items: center;
+
+    gap: 20px;
+
+    min-width: 0;
 }
+
+
+.logo {
+    min-width: 0;
+}
+
+
+.logo h1 {
+    margin: 0;
+}
+
 
 .logo h1 a {
     color: var(--texto-principal);
+
     text-decoration: none;
+
     font-weight: 700;
 }
 
+
+/* ==========================================================================
+   9. MENU
+   ========================================================================== */
+
 .menu-navegacao {
     display: flex;
+
     list-style: none;
+
     gap: 20px;
+
+    padding: 0;
+    margin: 0;
+
+    flex-wrap: wrap;
 }
+
 
 .menu-navegacao a {
     color: var(--texto-principal);
+
     text-decoration: none;
+
     font-weight: 500;
 }
+
 
 .menu-navegacao a[aria-current="page"] {
     color: var(--cor-primaria);
+
     border-bottom: 2px solid var(--cor-primaria);
 }
 
-/* ==========================================================================
-   3. BANNER DE BUSCA E FILTROS
-   ========================================================================== */
-.banner-introducao {
-    padding: 60px 0;
-    text-align: center;
-    background: linear-gradient(135deg, #e9ecef, #f8f9fa);
-    border-bottom: 1px solid var(--borda);
-}
-
-[data-theme="dark"] .banner-introducao {
-    background: linear-gradient(135deg, #1a1a1a, #121212);
-}
-
-.banner-introducao h2 {
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-}
-
-.banner-introducao p {
-    color: var(--texto-secundario);
-    margin-bottom: 30px;
-}
-
-.container-busca {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.container-busca input,
-.container-busca select {
-    padding: 12px 16px;
-    font-size: 1rem;
-    border: 1px solid var(--borda);
-    border-radius: 6px;
-    background-color: var(--bg-card);
-    color: var(--texto-principal);
-    width: 100%;
-}
-
-.container-busca input {
-    flex: 2;
-}
-
-.container-busca select {
-    flex: 1;
-}
 
 /* ==========================================================================
-   4. GRID DE AULAS E CARDS
-   ========================================================================== */
-.secao-aulas {
-    padding: 60px 0;
-}
-
-.secao-aulas h2 {
-    margin-bottom: 30px;
-    font-size: 1.8rem;
-}
-
-.grid-aulas {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px;
-}
-
-.card-aula {
-    background-color: var(--bg-card);
-    border: 1px solid var(--borda);
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card-aula:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-}
-
-.conteudo-card {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.conteudo-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 12px;
-}
-
-.descricao-aula {
-    color: var(--texto-secundario);
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-    flex-grow: 1;
-}
-
-.tags-perfil {
-    margin-bottom: 20px;
-}
-
-.tag {
-    background-color: var(--cor-tag-bg);
-    color: var(--cor-tag-texto);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.btn-video, .btn-doc {
-    display: block;
-    text-align: center;
-    padding: 10px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    margin-top: 10px;
-    font-size: 0.95rem;
-}
-
-.btn-video {
-    background-color: var(--cor-primaria);
-    color: white;
-}
-
-.btn-video:hover {
-    background-color: var(--cor-primaria-hover);
-}
-
-.btn-doc {
-    background-color: transparent;
-    color: var(--cor-primaria);
-    border: 1px solid var(--cor-primaria);
-}
-
-.btn-doc:hover {
-    background-color: var(--cor-tag-bg);
-}
-
-/* Mensagem de Erro/Filtro Vazio */
-.mensagem-vazia {
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--texto-secundario);
-    padding: 4px 0;
-    width: 100%;
-    grid-column: 1 / -1;
-}
-
-/* ==========================================================================
-   5. ACESSIBILIDADE: MODO FOCO (TDAH / TEA) - CORRIGIDO
-   ========================================================================== */
-.modo-foco-ativo .banner-introducao,
-.modo-foco-ativo .barra-acessibilidade,
-.modo-foco-ativo .cabecalho-principal,
-.modo-foco-ativo .tags-perfil,
-.modo-foco-ativo .btn-doc {
-    display: none !important; /* Oculta distrações periféricas */
-}
-
-.modo-foco-ativo .secao-aulas {
-    padding-top: 40px;
-}
-
-/* Quando o Modo Foco está ativo, suaviza todos os cards por padrão */
-.modo-foco-ativo .card-aula {
-    opacity: 0.3;
-    transition: opacity 0.3s ease;
-}
-
-/* Destaca intensamente apenas o card que está recebendo a atenção ou o foco do mouse */
-.modo-foco-ativo .card-aula:hover,
-.modo-foco-ativo .card-aula.foco-visivel {
-    opacity: 1 !important;
-    box-shadow: 0 0 25px rgba(13, 110, 253, 0.2); /* Sutil brilho azul de destaque */
-}
-
-
-/* ==========================================================================
-   6. CABEÇALHO E LOGIN COM GOOGLE
+   10. ÁREA DIREITA DO CABEÇALHO
    ========================================================================== */
 
 .cabecalho-direita {
     display: flex;
+
     align-items: center;
-    gap: 24px;
+
+    gap: 20px;
+
+    min-width: 0;
 }
+
 
 .area-login {
     display: flex;
+
     align-items: center;
+
+    min-width: 0;
 }
+
+
+/* ==========================================================================
+   11. LOGIN COM GOOGLE
+   ========================================================================== */
 
 .btn-login-google,
 .btn-sair {
     min-height: 42px;
+
     border-radius: 6px;
+
     padding: 9px 14px;
+
     cursor: pointer;
+
     font-size: 0.9rem;
+
     font-weight: 600;
-    transition: transform 0.2s, background-color 0.2s;
+
+    transition:
+        transform 0.2s,
+        background-color 0.2s;
 }
+
 
 .btn-login-google {
     display: inline-flex;
+
     align-items: center;
+
     gap: 8px;
+
     border: 1px solid var(--borda);
+
     background-color: var(--bg-card);
+
     color: var(--texto-principal);
 }
+
 
 .btn-login-google:hover,
 .btn-sair:hover {
     transform: translateY(-1px);
 }
 
+
+.btn-login-google:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
 .icone-google {
     font-size: 1.1rem;
+
     font-weight: 800;
 }
 
+
+/* ==========================================================================
+   12. USUÁRIO LOGADO
+   ========================================================================== */
+
 .usuario-logado {
     display: flex;
+
     align-items: center;
+
     gap: 10px;
+
+    min-width: 0;
 }
+
 
 .usuario-logado[hidden] {
     display: none !important;
 }
 
+
+/* FOTO */
+
 #foto-usuario {
     width: 42px;
     height: 42px;
+
+    min-width: 42px;
+
     border-radius: 50%;
+
     object-fit: cover;
+
     border: 1px solid var(--borda);
 }
+
+
+/* NOME */
 
 #nome-usuario {
     max-width: 150px;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
+
     white-space: nowrap;
+
     font-weight: 600;
+
     color: var(--texto-principal);
 }
+
+
+/* SAIR */
 
 .btn-sair {
     border: 1px solid var(--borda);
+
     background-color: transparent;
+
     color: var(--texto-principal);
 }
 
+
 /* ==========================================================================
-   7. RESPONSIVIDADE
+   13. BANNER PRINCIPAL
+   ========================================================================== */
+
+.banner-introducao {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 60px 0;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e9ecef,
+            #f8f9fa
+        );
+
+    border-bottom: 1px solid var(--borda);
+
+    overflow-x: hidden;
+}
+
+
+[data-theme="dark"] .banner-introducao {
+    background:
+        linear-gradient(
+            135deg,
+            #1a1a1a,
+            #121212
+        );
+}
+
+
+.banner-introducao h2 {
+    font-size: 2.2rem;
+
+    margin-bottom: 10px;
+}
+
+
+.banner-introducao p {
+    color: var(--texto-secundario);
+
+    margin-bottom: 30px;
+}
+
+
+/* ==========================================================================
+   14. BUSCA E FILTROS
+   ========================================================================== */
+
+.container-busca {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    width: 100%;
+    max-width: 700px;
+
+    margin: 0 auto;
+}
+
+
+.container-busca input,
+.container-busca select {
+    min-width: 0;
+
+    padding: 12px 16px;
+
+    font-size: 1rem;
+
+    border: 1px solid var(--borda);
+
+    border-radius: 6px;
+
+    background-color: var(--bg-card);
+
+    color: var(--texto-principal);
+
+    width: 100%;
+}
+
+
+.container-busca input {
+    flex: 2;
+}
+
+
+.container-busca select {
+    flex: 1;
+}
+
+
+/* ==========================================================================
+   15. SEÇÃO DE AULAS
+   ========================================================================== */
+
+.secao-aulas {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 60px 0;
+}
+
+
+.secao-aulas h2 {
+    margin-bottom: 30px;
+
+    font-size: 1.8rem;
+}
+
+
+/* ==========================================================================
+   16. GRID DE AULAS
+   ========================================================================== */
+
+.grid-aulas {
+    display: grid;
+
+    width: 100%;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(280px, 1fr));
+
+    gap: 30px;
+}
+
+
+/* ==========================================================================
+   17. CARDS
+   ========================================================================== */
+
+.card-aula {
+    min-width: 0;
+
+    background-color: var(--bg-card);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.card-aula:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+
+.conteudo-card {
+    padding: 24px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    height: 100%;
+
+    min-width: 0;
+}
+
+
+.conteudo-card h3 {
+    font-size: 1.3rem;
+
+    margin-bottom: 12px;
+}
+
+
+.descricao-aula {
+    color: var(--texto-secundario);
+
+    font-size: 0.95rem;
+
+    margin-bottom: 20px;
+
+    flex-grow: 1;
+}
+
+
+/* ==========================================================================
+   18. TAGS
+   ========================================================================== */
+
+.tags-perfil {
+    margin-bottom: 20px;
+}
+
+
+.tag {
+    display: inline-block;
+
+    background-color: var(--cor-tag-bg);
+
+    color: var(--cor-tag-texto);
+
+    padding: 4px 10px;
+
+    border-radius: 4px;
+
+    font-size: 0.8rem;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   19. BOTÕES DAS AULAS
+   ========================================================================== */
+
+.btn-video,
+.btn-doc {
+    display: block;
+
+    width: 100%;
+
+    text-align: center;
+
+    padding: 10px;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    font-weight: 500;
+
+    margin-top: 10px;
+
+    font-size: 0.95rem;
+
+    word-break: break-word;
+}
+
+
+.btn-video {
+    background-color: var(--cor-primaria);
+
+    color: white;
+}
+
+
+.btn-video:hover {
+    background-color: var(--cor-primaria-hover);
+}
+
+
+.btn-doc {
+    background-color: transparent;
+
+    color: var(--cor-primaria);
+
+    border: 1px solid var(--cor-primaria);
+}
+
+
+.btn-doc:hover {
+    background-color: var(--cor-tag-bg);
+}
+
+
+/* ==========================================================================
+   20. MENSAGEM DE BUSCA VAZIA
+   ========================================================================== */
+
+.mensagem-vazia {
+    width: 100%;
+
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    font-size: 1.2rem;
+
+    color: var(--texto-secundario);
+
+    padding: 20px 0;
+}
+
+
+/* ==========================================================================
+   21. MODO FOCO
+   ========================================================================== */
+
+.modo-foco-ativo .banner-introducao,
+.modo-foco-ativo .barra-acessibilidade,
+.modo-foco-ativo .cabecalho-principal,
+.modo-foco-ativo .tags-perfil,
+.modo-foco-ativo .btn-doc {
+    display: none !important;
+}
+
+
+.modo-foco-ativo .secao-aulas {
+    padding-top: 40px;
+}
+
+
+.modo-foco-ativo .card-aula {
+    opacity: 0.3;
+
+    transition: opacity 0.3s ease;
+}
+
+
+.modo-foco-ativo .card-aula:hover,
+.modo-foco-ativo .card-aula.foco-visivel {
+    opacity: 1 !important;
+
+    box-shadow:
+        0 0 25px rgba(13, 110, 253, 0.2);
+}
+
+
+/* ==========================================================================
+   22. RESPONSIVIDADE - TABLET
    ========================================================================== */
 
 @media (max-width: 850px) {
 
     .cabecalho-principal .container {
         flex-direction: column;
+
+        justify-content: center;
+
         gap: 16px;
     }
 
+
     .cabecalho-direita {
         flex-direction: column;
+
+        justify-content: center;
+
         gap: 14px;
+
         width: 100%;
     }
+
 
     .menu-navegacao {
         justify-content: center;
-        flex-wrap: wrap;
     }
+
 
     .area-login {
         justify-content: center;
+
         width: 100%;
     }
 
+
+    .usuario-logado {
+        justify-content: center;
+    }
+
 }
+
+
+/* ==========================================================================
+   23. RESPONSIVIDADE - CELULAR
+   ========================================================================== */
 
 @media (max-width: 600px) {
 
-    .container-busca {
-        flex-direction: column;
+    /* CONTAINER */
+
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
     }
+
+
+    /* BARRA DE ACESSIBILIDADE */
+
+    .barra-acessibilidade {
+        padding: 10px 0;
+    }
+
 
     .container-flex {
         justify-content: center;
+
+        gap: 10px;
     }
+
 
     .grupo-ajuste {
-        flex-wrap: wrap;
+        width: 100%;
+
         justify-content: center;
+
+        gap: 8px;
     }
+
+
+    .barra-acessibilidade button {
+        flex: 1 1 auto;
+
+        min-height: 44px;
+
+        font-size: 0.85rem;
+
+        padding: 8px;
+    }
+
+
+    /* LOGO */
+
+    .logo h1 {
+        text-align: center;
+
+        font-size: 2rem;
+    }
+
+
+    /* MENU */
+
+    .menu-navegacao {
+        justify-content: center;
+
+        gap: 25px;
+    }
+
+
+    /* USUÁRIO */
 
     .usuario-logado {
-        flex-wrap: wrap;
+        width: 100%;
+
         justify-content: center;
+
+        flex-wrap: wrap;
     }
+
 
     #nome-usuario {
-        max-width: 120px;
+        max-width: 130px;
+    }
+
+
+    /* BANNER */
+
+    .banner-introducao {
+        padding: 45px 0;
+    }
+
+
+    .banner-introducao h2 {
+        font-size: 1.8rem;
+
+        line-height: 1.3;
+    }
+
+
+    .banner-introducao p {
+        font-size: 1rem;
+    }
+
+
+    /* BUSCA */
+
+    .container-busca {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+
+    .container-busca input,
+    .container-busca select {
+        width: 100%;
+    }
+
+
+    /* AULAS */
+
+    .secao-aulas {
+        padding: 40px 0;
+    }
+
+
+    .secao-aulas h2 {
+        font-size: 1.5rem;
+    }
+
+
+    /* GRID */
+
+    .grid-aulas {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+
+    /* CARD */
+
+    .conteudo-card {
+        padding: 20px;
     }
 
 }
-/* Garante que elementos com hidden realmente desapareçam */
-[hidden] {
-    display: none !important;
-}
 
-/* Foto do usuário */
-#foto-usuario {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-}
-[hidden] {
-    display: none !important;
-}
-/* Impede o site de ultrapassar a largura da tela */
-html,
-body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
 
-/* Faz todos os elementos respeitarem a largura da tela */
-* {
-    box-sizing: border-box;
-}
+/* ==========================================================================
+   24. TELAS MUITO PEQUENAS
+   ========================================================================== */
 
-/* Containers principais não podem ultrapassar a tela */
-header,
-main,
-section,
-nav,
-footer {
-    max-width: 100%;
+@media (max-width: 380px) {
+
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    .barra-acessibilidade button {
+        font-size: 0.78rem;
+
+        padding: 7px;
+    }
+
+
+    .logo h1 {
+        font-size: 1.7rem;
+    }
+
+
+    #nome-usuario {
+        max-width: 100px;
+    }
+
+
+    .banner-introducao h2 {
+        font-size: 1.6rem;
+    }
+
 }
