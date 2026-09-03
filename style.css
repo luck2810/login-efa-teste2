@@ -472,3 +472,16 @@ body {
     }
 
 }
+/* Garante que elementos com hidden realmente desapareçam */
+[hidden] {
+    display: none !important;
+}
+
+/* Foto do usuário */
+#foto-usuario {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
