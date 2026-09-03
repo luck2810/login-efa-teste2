@@ -250,22 +250,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             await signInWithPopup(auth, provider);
 
-        } catch (erro) {
+        } } catch (erro) {
 
-            console.error('Erro ao fazer login:', erro);
+    console.error("Erro completo:", erro);
 
-            if (erro.code === 'auth/popup-closed-by-user') {
-                return;
-            }
+    alert(
+        "Erro: " + erro.code + "\n\n" + erro.message
+    );
 
-            alert(
-                'Não foi possível entrar com Google. Verifique a configuração do Firebase.'
-            );
-
-        }
-
-    });
-
+}
 
     /* ======================================================================
    7. DETECTAR USUÁRIO LOGADO
