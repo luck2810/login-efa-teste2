@@ -488,3 +488,24 @@ body {
 [hidden] {
     display: none !important;
 }
+/* Impede o site de ultrapassar a largura da tela */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Faz todos os elementos respeitarem a largura da tela */
+* {
+    box-sizing: border-box;
+}
+
+/* Containers principais não podem ultrapassar a tela */
+header,
+main,
+section,
+nav,
+footer {
+    max-width: 100%;
+}
