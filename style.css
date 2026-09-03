@@ -485,3 +485,6 @@ body {
     object-fit: cover;
     display: block;
 }
+[hidden] {
+    display: none !important;
+}
