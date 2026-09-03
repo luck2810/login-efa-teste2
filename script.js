@@ -29,38 +29,38 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
 
     /* ======================================================================
        SELETORES DE ACESSIBILIDADE
        ====================================================================== */
 
-    const btnReduzirTexto = document.getElementById('btn-reduzir-texto');
-    const btnAumentarTexto = document.getElementById('btn-aumentar-texto');
-    const btnFonteDislexia = document.getElementById('btn-fonte-dislexia');
-    const btnModoFoco = document.getElementById('btn-modo-foco');
-    const btnAlternarTema = document.getElementById('btn-alternar-tema');
+    const btnReduzirTexto = document.getElementById("btn-reduzir-texto");
+    const btnAumentarTexto = document.getElementById("btn-aumentar-texto");
+    const btnFonteDislexia = document.getElementById("btn-fonte-dislexia");
+    const btnModoFoco = document.getElementById("btn-modo-foco");
+    const btnAlternarTema = document.getElementById("btn-alternar-tema");
 
 
     /* ======================================================================
        SELETORES DE BUSCA E FILTROS
        ====================================================================== */
 
-    const campoBusca = document.getElementById('campo-busca');
-    const filtroPerfil = document.getElementById('filtro-perfil');
-    const cardsAulas = document.querySelectorAll('.card-aula');
-    const mensagemVazia = document.getElementById('mensagem-vazia');
+    const campoBusca = document.getElementById("campo-busca");
+    const filtroPerfil = document.getElementById("filtro-perfil");
+    const cardsAulas = document.querySelectorAll(".card-aula");
+    const mensagemVazia = document.getElementById("mensagem-vazia");
 
 
     /* ======================================================================
        SELETORES DO LOGIN
        ====================================================================== */
 
-    const btnLoginGoogle = document.getElementById('btn-login-google');
-    const usuarioLogado = document.getElementById('usuario-logado');
-    const fotoUsuario = document.getElementById('foto-usuario');
-    const nomeUsuario = document.getElementById('nome-usuario');
-    const btnSair = document.getElementById('btn-sair');
+    const btnLoginGoogle = document.getElementById("btn-login-google");
+    const usuarioLogado = document.getElementById("usuario-logado");
+    const fotoUsuario = document.getElementById("foto-usuario");
+    const nomeUsuario = document.getElementById("nome-usuario");
+    const btnSair = document.getElementById("btn-sair");
 
 
     /* ======================================================================
@@ -73,31 +73,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const TAMANHO_MAX = 24;
 
 
-    btnAumentarTexto.addEventListener('click', () => {
+    btnAumentarTexto.addEventListener("click", () => {
 
         if (tamanhoAtual < TAMANHO_MAX) {
 
             tamanhoAtual += 2;
 
             document.documentElement.style.setProperty(
-                '--tamanho-base',
+                "--tamanho-base",
                 `${tamanhoAtual}px`
             );
+
         }
 
     });
 
 
-    btnReduzirTexto.addEventListener('click', () => {
+    btnReduzirTexto.addEventListener("click", () => {
 
         if (tamanhoAtual > TAMANHO_MIN) {
 
             tamanhoAtual -= 2;
 
             document.documentElement.style.setProperty(
-                '--tamanho-base',
+                "--tamanho-base",
                 `${tamanhoAtual}px`
             );
+
         }
 
     });
@@ -107,11 +109,14 @@ document.addEventListener('DOMContentLoaded', () => {
        2. FONTE PARA DISLEXIA
        ====================================================================== */
 
-    btnFonteDislexia.addEventListener('click', () => {
+    btnFonteDislexia.addEventListener("click", () => {
 
-        const estaAtivo = document.body.classList.toggle('fonte-dislexia');
+        const estaAtivo = document.body.classList.toggle("fonte-dislexia");
 
-        btnFonteDislexia.setAttribute('aria-pressed', String(estaAtivo));
+        btnFonteDislexia.setAttribute(
+            "aria-pressed",
+            String(estaAtivo)
+        );
 
     });
 
@@ -120,15 +125,19 @@ document.addEventListener('DOMContentLoaded', () => {
        3. MODO FOCO
        ====================================================================== */
 
-    btnModoFoco.addEventListener('click', () => {
+    btnModoFoco.addEventListener("click", () => {
 
-        const estaAtivo = document.body.classList.toggle('modo-foco-ativo');
+        const estaAtivo =
+            document.body.classList.toggle("modo-foco-ativo");
 
-        btnModoFoco.setAttribute('aria-pressed', String(estaAtivo));
+        btnModoFoco.setAttribute(
+            "aria-pressed",
+            String(estaAtivo)
+        );
 
         btnModoFoco.textContent = estaAtivo
-            ? 'Desativar Modo Foco'
-            : 'Ativar Modo Foco';
+            ? "Desativar Modo Foco"
+            : "Ativar Modo Foco";
 
         executarFiltros();
 
@@ -139,17 +148,21 @@ document.addEventListener('DOMContentLoaded', () => {
        4. ALTERNAR TEMA
        ====================================================================== */
 
-    btnAlternarTema.addEventListener('click', () => {
+    btnAlternarTema.addEventListener("click", () => {
 
-        const temaAtual = document.documentElement.getAttribute('data-theme');
+        const temaAtual =
+            document.documentElement.getAttribute("data-theme");
 
-        if (temaAtual === 'dark') {
+        if (temaAtual === "dark") {
 
-            document.documentElement.removeAttribute('data-theme');
+            document.documentElement.removeAttribute("data-theme");
 
         } else {
 
-            document.documentElement.setAttribute('data-theme', 'dark');
+            document.documentElement.setAttribute(
+                "data-theme",
+                "dark"
+            );
 
         }
 
@@ -157,61 +170,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ======================================================================
-       5. BUSCA + FILTRO DE PERFIL
+       5. BUSCA + FILTRO
        ====================================================================== */
 
     function executarFiltros() {
 
-        const termoBusca = campoBusca.value.toLowerCase().trim();
+        const termoBusca =
+            campoBusca.value.toLowerCase().trim();
 
-        const perfilSelecionado = filtroPerfil.value;
+        const perfilSelecionado =
+            filtroPerfil.value;
 
         const modoFocoAtivo =
-            document.body.classList.contains('modo-foco-ativo');
+            document.body.classList.contains("modo-foco-ativo");
 
         let cardsVisiveis = 0;
 
 
         cardsAulas.forEach(card => {
 
-            const tituloCard = (
-                card.getAttribute('data-titulo') || ''
-            ).toLowerCase();
+            const tituloCard =
+                (card.getAttribute("data-titulo") || "")
+                    .toLowerCase();
 
-            const perfisCard = (
-                card.getAttribute('data-perfis') || ''
-            ).split(' ');
+            const perfisCard =
+                (card.getAttribute("data-perfis") || "")
+                    .split(" ");
 
 
             const correspondeTexto =
                 tituloCard.includes(termoBusca);
 
             const correspondePerfil =
-                perfilSelecionado === 'todos'
-                || perfisCard.includes(perfilSelecionado);
+                perfilSelecionado === "todos" ||
+                perfisCard.includes(perfilSelecionado);
 
 
             if (correspondeTexto && correspondePerfil) {
 
                 cardsVisiveis++;
 
-                card.style.display = 'flex';
+                card.style.display = "flex";
 
                 if (modoFocoAtivo) {
 
-                    card.classList.add('foco-visivel');
+                    card.classList.add("foco-visivel");
 
                 } else {
 
-                    card.classList.remove('foco-visivel');
+                    card.classList.remove("foco-visivel");
 
                 }
 
             } else {
 
-                card.style.display = 'none';
+                card.style.display = "none";
 
-                card.classList.remove('foco-visivel');
+                card.classList.remove("foco-visivel");
 
             }
 
@@ -220,102 +235,108 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (cardsVisiveis === 0) {
 
-            mensagemVazia.classList.remove('sr-only');
-
-            mensagemVazia.style.display = 'block';
+            mensagemVazia.classList.remove("sr-only");
+            mensagemVazia.style.display = "block";
 
         } else {
 
-            mensagemVazia.classList.add('sr-only');
-
-            mensagemVazia.style.display = 'none';
+            mensagemVazia.classList.add("sr-only");
+            mensagemVazia.style.display = "none";
 
         }
 
     }
 
 
-    campoBusca.addEventListener('input', executarFiltros);
+    campoBusca.addEventListener("input", executarFiltros);
 
-    filtroPerfil.addEventListener('change', executarFiltros);
+    filtroPerfil.addEventListener("change", executarFiltros);
 
 
     /* ======================================================================
        6. LOGIN COM GOOGLE
        ====================================================================== */
 
-    btnLoginGoogle.addEventListener('click', async () => {
+    btnLoginGoogle.addEventListener("click", async () => {
 
         try {
 
             await signInWithPopup(auth, provider);
 
-        } } catch (erro) {
+        } catch (erro) {
 
-    console.error("Erro completo:", erro);
+            console.error("Erro completo:", erro);
 
-    alert(
-        "Erro: " + erro.code + "\n\n" + erro.message
-    );
+            if (erro.code !== "auth/popup-closed-by-user") {
 
-}
+                alert(
+                    "Erro: " +
+                    erro.code +
+                    "\n\n" +
+                    erro.message
+                );
 
-    /* ======================================================================
-   7. DETECTAR USUÁRIO LOGADO
-   ====================================================================== */
-
-onAuthStateChanged(auth, (usuario) => {
-
-    if (usuario) {
-
-        console.log("Usuário logado:", usuario);
-
-        nomeUsuario.textContent =
-            usuario.displayName || "Usuário";
-
-
-        // FOTO DO GOOGLE
-        if (usuario.photoURL) {
-
-            fotoUsuario.src = usuario.photoURL;
-
-            fotoUsuario.alt =
-                `Foto de ${usuario.displayName || "usuário"}`;
-
-            fotoUsuario.style.display = "block";
-
-        } else {
-
-            fotoUsuario.style.display = "none";
+            }
 
         }
 
-
-        // Mostra informações do usuário
-        usuarioLogado.hidden = false;
-
-        // Esconde botão Entrar com Google
-        btnLoginGoogle.hidden = true;
+    });
 
 
-    } else {
+    /* ======================================================================
+       7. DETECTAR USUÁRIO LOGADO
+       ====================================================================== */
 
-        // Esconde informações do usuário
-        usuarioLogado.hidden = true;
+    onAuthStateChanged(auth, (usuario) => {
 
-        // Mostra botão de login
-        btnLoginGoogle.hidden = false;
+        if (usuario) {
 
-    }
+            console.log("Usuário logado:", usuario);
 
-});
+            nomeUsuario.textContent =
+                usuario.displayName || "Usuário";
+
+
+            if (usuario.photoURL) {
+
+                fotoUsuario.src = usuario.photoURL;
+
+                fotoUsuario.alt =
+                    `Foto de ${usuario.displayName || "usuário"}`;
+
+                fotoUsuario.hidden = false;
+
+            } else {
+
+                fotoUsuario.hidden = true;
+
+            }
+
+
+            // Mostra área do usuário
+            usuarioLogado.hidden = false;
+
+            // Esconde botão de login
+            btnLoginGoogle.hidden = true;
+
+        } else {
+
+            // Esconde usuário
+            usuarioLogado.hidden = true;
+
+            // Mostra login
+            btnLoginGoogle.hidden = false;
+
+        }
+
+    });
 
 
     /* ======================================================================
        8. SAIR DA CONTA
        ====================================================================== */
 
-    btnSair.addEventListener('click', async () => {
+    btnSair.addEventListener("click", async () => {
 
         try {
 
@@ -323,9 +344,12 @@ onAuthStateChanged(auth, (usuario) => {
 
         } catch (erro) {
 
-            console.error('Erro ao sair da conta:', erro);
+            console.error(
+                "Erro ao sair da conta:",
+                erro
+            );
 
-            alert('Não foi possível sair da conta.');
+            alert("Não foi possível sair da conta.");
 
         }
 
