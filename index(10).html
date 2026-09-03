@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EducaAcessível - Plataforma de Ensino Inclusiva</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <a href="#conteudo-principal" class="sr-only-focusable">
+        Pular para o conteúdo principal
+    </a>
+
+    <!-- Barra de Acessibilidade Superior -->
+    <div class="barra-acessibilidade" role="region" aria-label="Ferramentas de Acessibilidade">
+        <div class="container-flex">
+
+            <div class="grupo-ajuste">
+                <button id="btn-reduzir-texto" aria-label="Diminuir tamanho do texto">A-</button>
+                <button id="btn-aumentar-texto" aria-label="Aumentar tamanho do texto">A+</button>
+
+                <button id="btn-fonte-dislexia" aria-pressed="false">
+                    Fonte para Dislexia
+                </button>
+            </div>
+
+            <div class="grupo-ajuste">
+                <button id="btn-modo-foco" aria-pressed="false">
+                    Ativar Modo Foco
+                </button>
+
+                <button id="btn-alternar-tema" aria-label="Alternar entre tema claro e escuro">
+                    Alternar Tema
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Cabeçalho -->
+    <header class="cabecalho-principal">
+
+        <div class="container">
+
+            <div class="logo">
+                <h1>
+                    <a href="index.html">EducaAcessível</a>
+                </h1>
+            </div>
+
+
+            <div class="cabecalho-direita">
+
+                <nav aria-label="Navegação Principal">
+                    <ul class="menu-navegacao">
+                        <li>
+                            <a href="index.html" aria-current="page">Início</a>
+                        </li>
+
+                        <li>
+                            <a href="#secao-aulas">Aulas</a>
+                        </li>
+                    </ul>
+                </nav>
+
+
+                <!-- LOGIN COM GOOGLE -->
+                <div class="area-login">
+
+                    <button
+                        id="btn-login-google"
+                        class="btn-login-google"
+                        type="button"
+                        aria-label="Entrar com sua conta Google"
+                    >
+                        <span class="icone-google" aria-hidden="true">G</span>
+                        Entrar com Google
+                    </button>
+
+
+                    <div
+                        id="usuario-logado"
+                        class="usuario-logado"
+                        hidden
+                        aria-live="polite"
+                    >
+
+                        <img
+                            id="foto-usuario"
+                            src=""
+                            alt=""
+                            referrerpolicy="no-referrer"
+                        >
+
+                        <span id="nome-usuario"></span>
+
+                        <button
+                            id="btn-sair"
+                            class="btn-sair"
+                            type="button"
+                        >
+                            Sair
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- Banner -->
+    <section class="banner-introducao" aria-labelledby="titulo-boas-vindas">
+
+        <div class="container">
+
+            <h2 id="titulo-boas-vindas">
+                Aprenda no seu próprio ritmo
+            </h2>
+
+            <p>
+                Uma plataforma educacional adaptável para perfis neurotípicos e neurodivergentes.
+            </p>
+
+
+            <div class="container-busca" role="search">
+
+                <label for="campo-busca" class="sr-only">
+                    Buscar aulas por título
+                </label>
+
+                <input
+                    type="search"
+                    id="campo-busca"
+                    placeholder="Digite o que deseja aprender..."
+                >
+
+
+                <label for="filtro-perfil" class="sr-only">
+                    Filtrar aulas por perfil
+                </label>
+
+                <select id="filtro-perfil">
+                    <option value="todos">Todos os perfis</option>
+                    <option value="tdah">Foco Adaptado (TDAH)</option>
+                    <option value="tea">Visual Limpo (Autismo/TEA)</option>
+                    <option value="dislexia">Leitura Facilitada (Dislexia)</option>
+                    <option value="baixa-visao">Alto Contraste (Baixa Visão)</option>
+                </select>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Conteúdo Principal -->
+    <main id="conteudo-principal" class="conteudo-principal">
+
+        <section
+            id="secao-aulas"
+            class="secao-aulas"
+            aria-labelledby="titulo-grid"
+        >
+
+            <div class="container">
+
+                <h2 id="titulo-grid">Nossas Aulas Disponíveis</h2>
+
+
+                <div class="grid-aulas" id="grid-aulas">
+
+                    <!-- Aula 1 -->
+                    <article
+                        class="card-aula"
+                        data-perfis="tdah"
+                        data-titulo="5 dicas taticas para ajudar o tdah nos estudos foco aprendizado"
+                    >
+
+                        <div class="conteudo-card">
+
+                            <h3>5 Táticas de Estudo Eficazes para TDAH</h3>
+
+                            <p class="descricao-aula">
+                                Aprenda como aplicar anotações estratégicas, mapas visuais,
+                                resumos focados e revisões cronometradas no mesmo dia para
+                                potencializar sua retenção mental.
+                            </p>
+
+                            <div class="tags-perfil">
+                                <span class="tag">TDAH</span>
+                            </div>
+
+                            <a
+                                href="https://www.youtube.com/watch?v=iMH4kO9LJsM&t=61s"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-video"
+                            >
+                                Assistir Aula no YouTube
+                            </a>
+
+                            <a
+                                href="https://docs.google.com/document/d/1SxZzmbnRP9-r6FMbAdbI2r5VTKv1KOfYq5-WPYtrtAw/edit?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-doc"
+                            >
+                                Acessar Atividade Adaptada
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Aula 2 -->
+                    <article
+                        class="card-aula"
+                        data-perfis="neurotipico"
+                        data-titulo="matematica conjuntos numericos diagramas de venn teoria"
+                    >
+
+                        <div class="conteudo-card">
+
+                            <h3>Conjuntos Numéricos e Diagramas de Venn</h3>
+
+                            <p class="descricao-aula">
+                                Aprenda a mapear e resolver intersecções e agrupamentos de
+                                dados utilizando a técnica de diagramas lógicos de dentro
+                                para fora.
+                            </p>
+
+                            <div class="tags-perfil">
+                                <span class="tag">Neurotípicos</span>
+                            </div>
+
+                            <a
+                                href="https://www.youtube.com/watch?v=qEDnZzzks7Q&t=10s"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-video"
+                            >
+                                Assistir Aula no YouTube
+                            </a>
+
+                            <a
+                                href="https://docs.google.com/document/d/1dyfrQekORiMvm3RppXgJPtPokkNRC2H_UdSXXE4gnFI/edit?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-doc"
+                            >
+                                Acessar Atividade Adaptada
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Aula 3 -->
+                    <article
+                        class="card-aula"
+                        data-perfis="tea"
+                        data-titulo="geografia espaco geografico e paisagem meio tecnico cientifico"
+                    >
+
+                        <div class="conteudo-card">
+
+                            <h3>Geografia: Espaço Geográfico e Paisagem</h3>
+
+                            <p class="descricao-aula">
+                                Compreenda a contínua relação entre a natureza e a modificação
+                                humana através do desenvolvimento técnico e estrutural do meio.
+                            </p>
+
+                            <div class="tags-perfil">
+                                <span class="tag">Autismo/TEA</span>
+                            </div>
+
+                            <a
+                                href="https://www.youtube.com/watch?v=fskgtecHtEE&t=41s"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-video"
+                            >
+                                Assistir Aula no YouTube
+                            </a>
+
+                            <a
+                                href="https://docs.google.com/document/d/1pQaQkteQqyAAzRRZmxqGPiPrqcl3ijUc4OV1Tuwt3Rk/edit?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-doc"
+                            >
+                                Acessar Atividade Adaptada
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Aula 4 -->
+                    <article
+                        class="card-aula"
+                        data-perfis="baixa-visao"
+                        data-titulo="geografia divisao dos continentes mapas mundo localizacao"
+                    >
+
+                        <div class="conteudo-card">
+
+                            <h3>A Divisão dos Continentes do Mundo</h3>
+
+                            <p class="descricao-aula">
+                                Estudo simplificado e mapeamento dos blocos continentais do
+                                planeta utilizando critérios físicos, geográficos e culturais básicos.
+                            </p>
+
+                            <div class="tags-perfil">
+                                <span class="tag">Baixa Visão</span>
+                            </div>
+
+                            <a
+                                href="https://www.youtube.com/watch?v=oY5_i3emLxE&t=181s"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-video"
+                            >
+                                Assistir Aula no YouTube
+                            </a>
+
+                            <a
+                                href="https://docs.google.com/document/d/1FK4jgqEcDHPJtnyHTeO9Niuaixib5BBjnE4Fhz65qus/edit?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-doc"
+                            >
+                                Acessar Atividade Adaptada
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Aula 5 -->
+                    <article
+                        class="card-aula"
+                        data-perfis="dislexia"
+                        data-titulo="historia introducao tempo cronologico e historico narrativo"
+                    >
+
+                        <div class="conteudo-card">
+
+                            <h3>Introdução ao Tempo Cronológico e Histórico</h3>
+
+                            <p class="descricao-aula">
+                                Compreensão estruturada e linear da contagem do tempo para
+                                facilitar o entendimento dos períodos históricos sem
+                                sobrecarga de termos técnicos.
+                            </p>
+
+                            <div class="tags-perfil">
+                                <span class="tag">Dislexia</span>
+                            </div>
+
+                            <a
+                                href="https://youtube.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-video"
+                            >
+                                Assistir Aula no YouTube
+                            </a>
+
+                            <a
+                                href="https://docs.google.com/document/d/1uF2qxDQcN6eo-dTZ7m0_2IUaU7PEeepBv4UqwVOLhqg/edit?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-doc"
+                            >
+                                Acessar Atividade Adaptada
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Aula 6 -->
+                    <article
+                        class="card-aula"
+                        data-perfis="tdah"
+                        data-titulo="portugues verbos tempos modos gramatica acao"
+                    >
+
+                        <div class="conteudo-card">
+
+                            <h3>Língua Portuguesa: O que é Verbo?</h3>
+
+                            <p class="descricao-aula">
+                                Entenda as estruturas de ação, estado e fenômenos da natureza
+                                de forma dinâmica dividida em pequenos blocos isolados.
+                            </p>
+
+                            <div class="tags-perfil">
+                                <span class="tag">TDAH</span>
+                            </div>
+
+                            <a
+                                href="https://youtube.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-video"
+                            >
+                                Assistir Aula no YouTube
+                            </a>
+
+                            <a
+                                href="https://docs.google.com/document/d/1ZC9UNWBJk5EAnA6EtTl52MLuddcoTYvywoAC7tQ00i0/edit?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-doc"
+                            >
+                                Acessar Atividade Adaptada
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <p
+                    id="mensagem-vazia"
+                    class="mensagem-vazia sr-only"
+                    role="status"
+                >
+                    Nenhuma aula encontrada para os filtros selecionados.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>
